@@ -1,6 +1,7 @@
-Date,Company,Rating,#Reviews,Industry level insights (Percentage: -100 (below industry's average) to 100),URL,Snapshots
-"Jan 16, 2026",Axtria,2.8,748,-22,https://www.ambitionbox.com/reviews/axtria-reviews,https://survival8.blogspot.com/2026/01/company-profile-axtria.html
-,Infosys,3.5,47300,-3,https://www.ambitionbox.com/reviews/infosys-reviews,
-,Accenture,3.7,71100,3,https://www.ambitionbox.com/reviews/accenture-reviews,
-,Cognizant,3.6,59900,0,https://www.ambitionbox.com/reviews/cognizant-reviews,
-,Nagarro,3.9,4700,8,https://www.ambitionbox.com/reviews/nagarro-reviews,
+Date,Company,Rating,#Reviews,Industry level insights (Percentage: -100 (below industry's average) to 100),URL,Snapshots,HQ,LinkedIn,Company Website,Company Industry
+"Jan 16, 2026",Axtria,2.8,748,-22,https://www.ambitionbox.com/reviews/axtria-reviews,https://survival8.blogspot.com/2026/01/company-profile-axtria.html,"Berkeley Heights,New Jersey, United States",https://www.linkedin.com/company/axtria/,https://www.axtria.com/,Data analytics & cloud software company focused on Life Sciences
+"Jan 16, 2026",Infosys,3.5,47300,-3,https://www.ambitionbox.com/reviews/infosys-reviews,,,,,IT Services
+"Jan 16, 2026",Accenture,3.7,71100,3,https://www.ambitionbox.com/reviews/accenture-reviews,,,,,IT Services
+"Jan 16, 2026",Cognizant,3.6,59900,0,https://www.ambitionbox.com/reviews/cognizant-reviews,,,,,IT Services
+"Jan 16, 2026",Nagarro,3.9,4700,8,https://www.ambitionbox.com/reviews/nagarro-reviews,,,,,IT Services
+"Jan 16, 2026",American Express,4.1,3800,11,https://www.ambitionbox.com/reviews/american-express-reviews,,,,,Financial Services
