@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZS Employee Reviews — What the Data Actually Says</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    div.customOuterWrapper {
+      background-color: #0f1623;
+      color: #dce3ed;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 0 80px 0;
+    }
+
+    div.customOuterWrapper * {
+      box-sizing: border-box;
+    }
+
+    /* ── Hero ── */
+    div.customOuterWrapper .cw-hero {
+      background: linear-gradient(160deg, #0f1623 0%, #1a2540 60%, #0f1e38 100%);
+      padding: 60px 48px 48px;
+      border-bottom: 1px solid #c9932722;
+      position: relative;
+      overflow: hidden;
+    }
+
+    div.customOuterWrapper .cw-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #c9932714 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    div.customOuterWrapper .cw-eyebrow {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c99327;
+      margin: 0 0 16px;
+    }
+
+    div.customOuterWrapper .cw-hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #f2f5fa;
+      margin: 0 0 20px;
+    }
+
+    div.customOuterWrapper .cw-hero-title span {
+      color: #c99327;
+    }
+
+    div.customOuterWrapper .cw-hero-meta {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      color: #7a8fa8;
+      letter-spacing: 0.04em;
+    }
+
+    div.customOuterWrapper .cw-hero-meta span {
+      color: #9fb3c8;
+    }
+
+    div.customOuterWrapper .cw-hero-lead {
+      margin-top: 24px;
+      font-size: 16px;
+      color: #a8bcce;
+      font-style: italic;
+      max-width: 640px;
+      line-height: 1.75;
+    }
+
+    /* ── Snapshot bar ── */
+    div.customOuterWrapper .cw-snapshot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 1px solid #1e2e45;
+    }
+
+    div.customOuterWrapper .cw-snap-item {
+      flex: 1 1 160px;
+      padding: 28px 32px;
+      border-right: 1px solid #1e2e45;
+      text-align: center;
+    }
+
+    div.customOuterWrapper .cw-snap-item:last-child {
+      border-right: none;
+    }
+
+    div.customOuterWrapper .cw-snap-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: #c99327;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    div.customOuterWrapper .cw-snap-number.cw-red {
+      color: #e05a4e;
+    }
+
+    div.customOuterWrapper .cw-snap-number.cw-muted {
+      color: #78a0b8;
+    }
+
+    div.customOuterWrapper .cw-snap-label {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      color: #6a84a0;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Body sections ── */
+    div.customOuterWrapper .cw-body {
+      padding: 0 48px;
+    }
+
+    div.customOuterWrapper .cw-section {
+      padding: 40px 0 0;
+    }
+
+    div.customOuterWrapper .cw-section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #e8ecf2;
+      margin: 0 0 6px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #c9932730;
+    }
+
+    div.customOuterWrapper .cw-section-subtitle {
+      font-size: 13px;
+      font-family: 'Source Sans 3', sans-serif;
+      color: #5e7a94;
+      margin: 0 0 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    div.customOuterWrapper .cw-prose {
+      color: #b0c4d6;
+      font-size: 16px;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    div.customOuterWrapper .cw-prose strong {
+      color: #d4e0ea;
+      font-weight: 600;
+    }
+
+    /* ── Ratings table ── */
+    div.customOuterWrapper .cw-ratings-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0 30px;
+    }
+
+    div.customOuterWrapper .cw-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    div.customOuterWrapper .cw-rating-label {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      color: #8ca7be;
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    div.customOuterWrapper .cw-rating-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: #1c2d42;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    div.customOuterWrapper .cw-rating-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: #c99327;
+    }
+
+    div.customOuterWrapper .cw-rating-bar.cw-bar-red {
+      background: #e05a4e;
+    }
+
+    div.customOuterWrapper .cw-rating-bar.cw-bar-amber {
+      background: #d4881a;
+    }
+
+    div.customOuterWrapper .cw-rating-score {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #c6d8e6;
+      width: 36px;
+      text-align: right;
+    }
+
+    div.customOuterWrapper .cw-gender-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+      padding-left: 216px;
+    }
+
+    div.customOuterWrapper .cw-gender-tag {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      color: #5e7a94;
+      background: #131f2e;
+      border: 1px solid #1e2e45;
+      border-radius: 3px;
+      padding: 2px 8px;
+    }
+
+    /* ── Policy pills ── */
+    div.customOuterWrapper .cw-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    div.customOuterWrapper .cw-pill {
+      background: #131f2e;
+      border: 1px solid #1e3050;
+      border-radius: 4px;
+      padding: 10px 18px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      color: #8ab0c8;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    div.customOuterWrapper .cw-pill-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #d4e0ea;
+    }
+
+    div.customOuterWrapper .cw-pill-pct {
+      color: #c99327;
+      font-size: 12px;
+    }
+
+    /* ── Review cards ── */
+    div.customOuterWrapper .cw-review-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    div.customOuterWrapper .cw-review-card {
+      background: #111b2a;
+      border: 1px solid #1a2d42;
+      border-left: 3px solid #c99327;
+      border-radius: 4px;
+      padding: 18px 20px;
+    }
+
+    div.customOuterWrapper .cw-review-card.cw-card-neg {
+      border-left-color: #e05a4e;
+    }
+
+    div.customOuterWrapper .cw-review-card.cw-card-mid {
+      border-left-color: #d4881a;
+    }
+
+    div.customOuterWrapper .cw-review-meta {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      color: #4f6a82;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    div.customOuterWrapper .cw-review-rating {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #c99327;
+      margin-bottom: 10px;
+    }
+
+    div.customOuterWrapper .cw-review-rating.cw-rating-neg {
+      color: #e05a4e;
+    }
+
+    div.customOuterWrapper .cw-review-text {
+      font-size: 14px;
+      color: #8da8be;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    div.customOuterWrapper .cw-review-text strong {
+      color: #aac0d0;
+      font-style: normal;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 4px;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    /* ── Salary table ── */
+    div.customOuterWrapper .cw-salary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    div.customOuterWrapper .cw-salary-table thead tr {
+      background: #0d1825;
+      border-bottom: 1px solid #c9932740;
+    }
+
+    div.customOuterWrapper .cw-salary-table th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #5a7a92;
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    div.customOuterWrapper .cw-salary-table tbody tr {
+      border-bottom: 1px solid #162030;
+    }
+
+    div.customOuterWrapper .cw-salary-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    div.customOuterWrapper .cw-salary-table td {
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #8cafc7;
+    }
+
+    div.customOuterWrapper .cw-salary-table .cw-td-role {
+      color: #c6d8e6;
+      font-weight: 600;
+    }
+
+    div.customOuterWrapper .cw-salary-table .cw-td-main {
+      color: #c99327;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    div.customOuterWrapper .cw-salary-table .cw-td-sub {
+      font-size: 12px;
+      color: #4f6a82;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ── Summary two-col ── */
+    div.customOuterWrapper .cw-verdict {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 24px 0;
+    }
+
+    div.customOuterWrapper .cw-verdict-col {
+      background: #111b2a;
+      border: 1px solid #1a2d42;
+      border-radius: 4px;
+      padding: 24px;
+    }
+
+    div.customOuterWrapper .cw-verdict-col-title {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 14px;
+    }
+
+    div.customOuterWrapper .cw-verdict-col.cw-col-green .cw-verdict-col-title {
+      color: #4caf82;
+    }
+
+    div.customOuterWrapper .cw-verdict-col.cw-col-red .cw-verdict-col-title {
+      color: #e05a4e;
+    }
+
+    div.customOuterWrapper .cw-verdict-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    div.customOuterWrapper .cw-verdict-col ul li {
+      font-size: 14px;
+      color: #8da8be;
+      padding: 6px 0;
+      border-bottom: 1px solid #162030;
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.6;
+    }
+
+    div.customOuterWrapper .cw-verdict-col ul li:last-child {
+      border-bottom: none;
+    }
+
+    div.customOuterWrapper .cw-verdict-col.cw-col-green ul li::before {
+      content: '+ ';
+      color: #4caf82;
+      font-weight: 700;
+    }
+
+    div.customOuterWrapper .cw-verdict-col.cw-col-red ul li::before {
+      content: '- ';
+      color: #e05a4e;
+      font-weight: 700;
+    }
+
+    /* ── Closing verdict box ── */
+    div.customOuterWrapper .cw-final-box {
+      margin: 36px 0 0;
+      background: #0d1825;
+      border: 1px solid #c9932730;
+      border-top: 3px solid #c99327;
+      border-radius: 4px;
+      padding: 28px 32px;
+    }
+
+    div.customOuterWrapper .cw-final-box-label {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #c99327;
+      margin-bottom: 12px;
+    }
+
+    div.customOuterWrapper .cw-final-box p {
+      font-size: 15px;
+      color: #94afbf;
+      line-height: 1.85;
+      margin: 0 0 12px;
+    }
+
+    div.customOuterWrapper .cw-final-box p:last-child {
+      margin: 0;
+    }
+
+    div.customOuterWrapper .cw-divider {
+      border: none;
+      border-top: 1px solid #162232;
+      margin: 40px 0 0;
+    }
+
+    /* ── Gender comparison strip ── */
+    div.customOuterWrapper .cw-gender-strip {
+      display: flex;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    div.customOuterWrapper .cw-gender-block {
+      flex: 1;
+      background: #111b2a;
+      border: 1px solid #1a2d42;
+      border-radius: 4px;
+      padding: 20px 24px;
+    }
+
+    div.customOuterWrapper .cw-gender-block-label {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #4f6a82;
+      margin-bottom: 8px;
+    }
+
+    div.customOuterWrapper .cw-gender-block-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #c99327;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    div.customOuterWrapper .cw-gender-block-sub {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      color: #4a6478;
+    }
+
+    @media (max-width: 680px) {
+      div.customOuterWrapper .cw-hero { padding: 40px 24px 36px; }
+      div.customOuterWrapper .cw-hero-title { font-size: 28px; }
+      div.customOuterWrapper .cw-body { padding: 0 24px; }
+      div.customOuterWrapper .cw-review-grid { grid-template-columns: 1fr; }
+      div.customOuterWrapper .cw-verdict { grid-template-columns: 1fr; }
+      div.customOuterWrapper .cw-snap-item { padding: 20px 16px; }
+      div.customOuterWrapper .cw-gender-strip { flex-direction: column; }
+      div.customOuterWrapper .cw-rating-label { width: 140px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="customOuterWrapper">
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <div class="cw-hero">
+    <p class="cw-eyebrow">AmbitionBox Analysis &mdash; Updated June 2026</p>
+    <h1 class="cw-hero-title">
+      What Employees Really<br/>Think About <span>ZS</span>
+    </h1>
+    <p class="cw-hero-meta">
+      <span>2,800+ verified reviews</span> &nbsp;|&nbsp; Management Consulting &nbsp;|&nbsp; 5,000&ndash;10,000 India employees
+    </p>
+    <p class="cw-hero-lead">
+      ZS operates under a tagline of "Where passion changes lives." Its own employees, across hundreds of candid reviews, paint a more complicated picture &mdash; one of competitive pay and genuine camaraderie set against some of the most consistently criticised work hours in the consulting sector.
+    </p>
+  </div>
+
+  <!-- ═══════════════ SNAPSHOT BAR ═══════════════ -->
+  <div class="cw-snapshot">
+    <div class="cw-snap-item">
+      <div class="cw-snap-number">3.1</div>
+      <div class="cw-snap-label">Overall Rating / 5</div>
+    </div>
+    <div class="cw-snap-item">
+      <div class="cw-snap-number cw-red">-14%</div>
+      <div class="cw-snap-label">vs. Industry Avg</div>
+    </div>
+    <div class="cw-snap-item">
+      <div class="cw-snap-number">3.6</div>
+      <div class="cw-snap-label">Salary Rating</div>
+    </div>
+    <div class="cw-snap-item">
+      <div class="cw-snap-number cw-red">2.0</div>
+      <div class="cw-snap-label">Work-Life Balance</div>
+    </div>
+    <div class="cw-snap-item">
+      <div class="cw-snap-number cw-muted">2.8k</div>
+      <div class="cw-snap-label">Total Reviews</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ BODY ═══════════════ -->
+  <div class="cw-body">
+
+    <!-- RATINGS BREAKDOWN -->
+    <div class="cw-section">
+      <h2 class="cw-section-title">Rating Breakdown by Category</h2>
+      <p class="cw-section-subtitle">All scores out of 5 &mdash; based on 2,800+ employee ratings</p>
+
+      <p class="cw-prose">
+        ZS earns its highest marks where it pays the most &mdash; on compensation and job security. The further you move from financial reward toward workplace experience, the lower the scores get, bottoming out on work-life balance at a <strong>2.0</strong>, a figure that places it in the bottom tier among comparable firms and 14% below the management consulting industry average overall.
+      </p>
+
+      <div class="cw-ratings-grid">
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Salary &amp; Benefits</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar" style="width:72%"></div></div>
+          <div class="cw-rating-score">3.6</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 3.5</div>
+          <div class="cw-gender-tag">Men: 3.7</div>
+        </div>
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Job Security</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar cw-bar-amber" style="width:64%"></div></div>
+          <div class="cw-rating-score">3.2</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 3.1</div>
+          <div class="cw-gender-tag">Men: 3.3</div>
+        </div>
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Company Culture</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar cw-bar-amber" style="width:62%"></div></div>
+          <div class="cw-rating-score">3.1</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 2.9</div>
+          <div class="cw-gender-tag">Men: 3.2</div>
+        </div>
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Skill Development</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar cw-bar-amber" style="width:62%"></div></div>
+          <div class="cw-rating-score">3.1</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 3.0</div>
+          <div class="cw-gender-tag">Men: 3.2</div>
+        </div>
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Promotions / Appraisal</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar cw-bar-amber" style="width:60%"></div></div>
+          <div class="cw-rating-score">3.0</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 2.7</div>
+          <div class="cw-gender-tag">Men: 3.1</div>
+        </div>
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Work Satisfaction</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar cw-bar-red" style="width:54%"></div></div>
+          <div class="cw-rating-score">2.7</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 2.6</div>
+          <div class="cw-gender-tag">Men: 2.7</div>
+        </div>
+
+        <div class="cw-rating-row">
+          <div class="cw-rating-label">Work-Life Balance</div>
+          <div class="cw-rating-bar-wrap"><div class="cw-rating-bar cw-bar-red" style="width:40%"></div></div>
+          <div class="cw-rating-score">2.0</div>
+        </div>
+        <div class="cw-gender-row">
+          <div class="cw-gender-tag">Women: 2.0</div>
+          <div class="cw-gender-tag">Men: 2.1</div>
+        </div>
+
+      </div>
+
+      <!-- Gender comparison -->
+      <div class="cw-gender-strip">
+        <div class="cw-gender-block">
+          <div class="cw-gender-block-label">Rating by Women &mdash; 691 reviews</div>
+          <div class="cw-gender-block-score">2.9</div>
+          <div class="cw-gender-block-sub">Women rate ZS consistently lower across all categories, most notably on promotions (2.7) and work-life balance (2.0).</div>
+        </div>
+        <div class="cw-gender-block">
+          <div class="cw-gender-block-label">Rating by Men &mdash; ~2,000 reviews</div>
+          <div class="cw-gender-block-score">3.1</div>
+          <div class="cw-gender-block-sub">Male employees give a marginally higher overall score, though work-life balance remains the weakest dimension at 2.1.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="cw-divider" />
+
+    <!-- WORK POLICIES -->
+    <div class="cw-section">
+      <h2 class="cw-section-title">Work Policies</h2>
+      <p class="cw-section-subtitle">Reported by employees in recent reviews</p>
+
+      <p class="cw-prose">
+        On paper, ZS's work arrangement looks reasonable &mdash; hybrid, five-day week, flexible timing. The reality described in individual reviews suggests the flexibility is nominal: a 3-day-per-week office mandate that still yields regular midnight logouts. The policies below reflect what employees themselves have reported.
+      </p>
+
+      <div class="cw-pills">
+        <div class="cw-pill">
+          <div class="cw-pill-title">Hybrid Work</div>
+          <div class="cw-pill-pct">89% of employees confirmed</div>
+          3 days/week from office
+        </div>
+        <div class="cw-pill">
+          <div class="cw-pill-title">5-Day Work Week</div>
+          <div class="cw-pill-pct">97% of employees confirmed</div>
+          Saturday and Sunday off
+        </div>
+        <div class="cw-pill">
+          <div class="cw-pill-title">Flexible Timings</div>
+          <div class="cw-pill-pct">82% of employees confirmed</div>
+          No fixed shift schedule
+        </div>
+        <div class="cw-pill">
+          <div class="cw-pill-title">Minimal Travel</div>
+          <div class="cw-pill-pct">71% report no travel required</div>
+          Primarily desk-based roles
+        </div>
+      </div>
+    </div>
+
+    <hr class="cw-divider" />
+
+    <!-- WHAT EMPLOYEES SAY: POSITIVES -->
+    <div class="cw-section">
+      <h2 class="cw-section-title">What Employees Appreciate</h2>
+      <p class="cw-section-subtitle">Recurring positives across recent reviews</p>
+
+      <p class="cw-prose">
+        Among the reviewers who rate ZS favourably, a consistent picture emerges: the company is seen as genuinely employee-first in its intent, even if delivery is uneven. The benefits package stands out as unusually generous relative to the sector, and the collegial quality of immediate teammates is a recurring bright spot, especially at the associate level.
+      </p>
+
+      <p class="cw-prose">
+        A Senior Data Engineer in Pune wrote at length about the depth of employee care: <strong>cab services with guards accompanying lone female employees to their last stop, PeeSafe installations in all washrooms, healthy snacks available in the pantry at all times, annual performance hikes in the 14&ndash;20% range, bonus structures in the same range, ELRP, annual gifts, and a calendar of quarterly parties and annual offsites at premium venues.</strong> The same reviewer noted that the firm's people are genuinely good, even where the work intensity is high.
+      </p>
+
+      <p class="cw-prose">
+        A Business Technology Associate from Noida described the firm's internal intent charitably: ZS acknowledges what is wrong and actively tries to close the gap. Its hierarchy is notably flat compared to peer firms &mdash; a feature that several senior employees described as a genuine differentiator. Some reviewers with positive experiences noted that exposure to smart, high-calibre colleagues is a strong reason to join at the associate level, especially early in a career.
+      </p>
+
+      <div class="cw-review-grid">
+        <div class="cw-review-card">
+          <div class="cw-review-meta">HR Associate &mdash; Gurugram &mdash; Feb 2026 &mdash; 5/5</div>
+          <div class="cw-review-rating">5.0</div>
+          <div class="cw-review-text">
+            <strong>Likes</strong>
+            The team, culture, collaboration, and support of the managers in growing, and appreciating the work.
+          </div>
+        </div>
+
+        <div class="cw-review-card">
+          <div class="cw-review-meta">Senior Data Engineer &mdash; Pune &mdash; May 2026 &mdash; 5/5</div>
+          <div class="cw-review-rating">5.0</div>
+          <div class="cw-review-text">
+            <strong>Likes</strong>
+            Employee-first company. Cab services, guards for female employees, PeeSafe, healthy snacks, 14&ndash;20% hikes, ELRP, annual gifts, quarterly parties. Amazing work culture; hectic work, but the people are good.
+          </div>
+        </div>
+
+        <div class="cw-review-card">
+          <div class="cw-review-meta">Consultant &mdash; Pune &mdash; Apr 2026 &mdash; 4/5</div>
+          <div class="cw-review-rating">4.0</div>
+          <div class="cw-review-text">
+            <strong>Likes</strong>
+            Company culture, salary, employee care, amenities. 3 days/week from office with flexible timings.
+          </div>
+        </div>
+
+        <div class="cw-review-card">
+          <div class="cw-review-meta">Data Engineer &mdash; Pune &mdash; Feb 2026 &mdash; 5/5</div>
+          <div class="cw-review-rating">5.0</div>
+          <div class="cw-review-text">
+            <strong>Likes</strong>
+            The culture, people, and employee benefits. Quarterly attendance is mandatory (60%) but manageable.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="cw-divider" />
+
+    <!-- WHAT EMPLOYEES CRITICISE -->
+    <div class="cw-section">
+      <h2 class="cw-section-title">Where Employees Draw the Line</h2>
+      <p class="cw-section-subtitle">The recurring grievances &mdash; across roles, cities, and departments</p>
+
+      <p class="cw-prose">
+        Work-life balance is the central complaint, and it is not mild. Multiple reviewers describe logging off at 11 pm or midnight as a routine, not an exception. A Decision Analytics Associate from Gurugram wrote that seniors used to work daily till 4 am, with the same expectation quietly pushed onto juniors. The same reviewer linked this environment directly to physical and psychological outcomes among the leadership team.
+      </p>
+
+      <p class="cw-prose">
+        A Business Technology Associate from Gurugram described the promotion process as driven by <strong>internal politics rather than deliverables</strong>, with long hours normalised without additional pay, especially for early-career associates. A Business Technology Associate from Noida offered a longer-horizon warning: ZS may be a viable stepping stone for those building a consulting career in pharma, but the longer one stays, the harder it becomes to transition to product companies. Salary packages that are strong at the associate level reportedly become inadequate at the Associate Consultant and Consultant band when life expenses grow.
+      </p>
+
+      <p class="cw-prose">
+        A Senior Software Engineer in Pune raised a pointed observation about the AI moment the industry is navigating: <strong>top management now expects two-month features to be delivered in two days</strong>, and the leadership team is described as treating employees as "resources" rather than people. The same reviewer noted that ZS was a good place to work until recently, and that the deterioration feels rapid and deliberate.
+      </p>
+
+      <p class="cw-prose">
+        A quieter but consistent complaint is the treatment of lateral hires and contractors. One reviewer specifically noted that employees who joined ZS as freshers are systematically prioritised over lateral joiners and contractors in promotion cycles, creating an insider-outsider dynamic that the firm has not visibly addressed.
+      </p>
+
+      <div class="cw-review-grid">
+        <div class="cw-review-card cw-card-neg">
+          <div class="cw-review-meta">Decision Analytics Associate &mdash; Gurugram &mdash; May 2026 &mdash; 1/5</div>
+          <div class="cw-review-rating cw-rating-neg">1.0</div>
+          <div class="cw-review-text">
+            <strong>Dislikes</strong>
+            Work-life balance is extremely poor. Seniors work daily till 4 am and expect the same from juniors. Overtime almost daily. Strict timings despite being a desk job.
+          </div>
+        </div>
+
+        <div class="cw-review-card cw-card-neg">
+          <div class="cw-review-meta">Business Technology Associate &mdash; Gurugram &mdash; May 2026 &mdash; 1/5</div>
+          <div class="cw-review-rating cw-rating-neg">1.0</div>
+          <div class="cw-review-text">
+            <strong>Dislikes</strong>
+            Long hours, normalised unpaid overtime, promotions driven by politics, work stagnates after a point, and tech stacks can be misaligned with your expertise.
+          </div>
+        </div>
+
+        <div class="cw-review-card cw-card-neg">
+          <div class="cw-review-meta">Senior Software Engineer &mdash; Pune &mdash; May 2026 &mdash; 1/5</div>
+          <div class="cw-review-rating cw-rating-neg">1.0</div>
+          <div class="cw-review-text">
+            <strong>Dislikes</strong>
+            AI has made management believe 2-month features can be delivered in 2 days. Leadership treats employees as resources. Contemplating leaving without an offer in hand.
+          </div>
+        </div>
+
+        <div class="cw-review-card cw-card-neg">
+          <div class="cw-review-meta">Business Technology Associate &mdash; Gurugram &mdash; May 2026 &mdash; 1/5</div>
+          <div class="cw-review-rating cw-rating-neg">1.0</div>
+          <div class="cw-review-text">
+            <strong>Dislikes</strong>
+            Not staffed on a good project. Stunted learning. Usual log-off at 11 pm&ndash;12 am, making it impossible to study or upskill after hours.
+          </div>
+        </div>
+
+        <div class="cw-review-card cw-card-mid">
+          <div class="cw-review-meta">Business Technology Associate &mdash; Noida &mdash; Mar 2026 &mdash; 3/5</div>
+          <div class="cw-review-rating" style="color:#d4881a;">3.0</div>
+          <div class="cw-review-text">
+            <strong>Balanced View</strong>
+            ZS means well and has flat hierarchy. But WLB is bad, promotions are slow, and salary at the Consultant level is insufficient for family life. Hard to pivot to product companies after staying long.
+          </div>
+        </div>
+
+        <div class="cw-review-card cw-card-mid">
+          <div class="cw-review-meta">Data Analyst &mdash; New Delhi &mdash; May 2026 &mdash; 3/5</div>
+          <div class="cw-review-rating" style="color:#d4881a;">3.0</div>
+          <div class="cw-review-text">
+            <strong>Balanced View</strong>
+            Work culture is genuinely among the best in the market. But poor WLB and a climate of fear around ratings if you do not visibly overwork undermine the experience.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="cw-divider" />
+
+    <!-- SALARY DATA -->
+    <div class="cw-section">
+      <h2 class="cw-section-title">Salary Reference &mdash; India Roles</h2>
+      <p class="cw-section-subtitle">Based on employee-reported data across 21,900+ salary records</p>
+
+      <p class="cw-prose">
+        Compensation is ZS's clearest competitive lever in India. Entry-level associates earn in a band that comfortably outpaces most IT services and mid-size consulting peers. The jump to Associate Consultant and Consultant bands is substantial on paper, though some reviewers question whether that jump compensates for the increased pressure and diminished career optionality that comes with seniority at ZS.
+      </p>
+
+      <table class="cw-salary-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Median Annual CTC</th>
+            <th>Reported Range</th>
+            <th>Sample Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cw-td-role">Decision Analytics Associate</td>
+            <td><span class="cw-td-main">Rs. 13.3 L</span></td>
+            <td>Rs. 12.7L &ndash; Rs. 14L</td>
+            <td>2,500+</td>
+          </tr>
+          <tr>
+            <td class="cw-td-role">Business Technology Associate</td>
+            <td><span class="cw-td-main">Rs. 13.4 L</span></td>
+            <td>Rs. 12.7L &ndash; Rs. 14.1L</td>
+            <td>1,800+</td>
+          </tr>
+          <tr>
+            <td class="cw-td-role">Data Engineer</td>
+            <td><span class="cw-td-main">Rs. 13.8 L</span></td>
+            <td>Rs. 13.1L &ndash; Rs. 14.4L</td>
+            <td>712</td>
+          </tr>
+          <tr>
+            <td class="cw-td-role">Assoc. Decision Analytics Consultant</td>
+            <td><span class="cw-td-main">Rs. 19.9 L</span></td>
+            <td>Rs. 18.9L &ndash; Rs. 20.9L</td>
+            <td>1,200+</td>
+          </tr>
+          <tr>
+            <td class="cw-td-role">Decision Analytics Consultant</td>
+            <td><span class="cw-td-main">Rs. 29.8 L</span></td>
+            <td>Rs. 28.3L &ndash; Rs. 31.3L</td>
+            <td>486</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="cw-prose">
+        Benefits reported by employees beyond base compensation include office cab and shuttle (252 respondents), free meals (190 respondents), and international or on-site exposure opportunities (82 respondents), along with more than 26 additional benefit categories.
+      </p>
+    </div>
+
+    <hr class="cw-divider" />
+
+    <!-- SUMMARY VERDICT -->
+    <div class="cw-section">
+      <h2 class="cw-section-title">The Unvarnished Picture</h2>
+      <p class="cw-section-subtitle">What the data and reviews say together</p>
+
+      <div class="cw-verdict">
+        <div class="cw-verdict-col cw-col-green">
+          <div class="cw-verdict-col-title">Reasons to Join</div>
+          <ul>
+            <li>Salary benchmarks above most IT services and mid-market consulting peers at associate levels</li>
+            <li>Annual hikes in the 14&ndash;20% band with performance bonuses in a similar range</li>
+            <li>Unusually rich benefits package including cab services, meals, safety infrastructure, and quarterly events</li>
+            <li>Flat hierarchy with genuine access to senior decision-makers</li>
+            <li>High-calibre peer environment &mdash; exposure to smart colleagues cited repeatedly as a real upside</li>
+            <li>Hybrid work structure with flexible timing in formal policy</li>
+            <li>Job security is rated at 3.2 &mdash; above average for consulting sector employees</li>
+          </ul>
+        </div>
+        <div class="cw-verdict-col cw-col-red">
+          <div class="cw-verdict-col-title">Reasons to Think Twice</div>
+          <ul>
+            <li>Work-life balance rated 2.0 &mdash; the lowest score across all categories by a wide margin</li>
+            <li>Overtime is nearly daily; midnight logouts reported as routine in several review threads</li>
+            <li>Promotion decisions perceived as politically driven rather than merit-based</li>
+            <li>Lateral hires treated as second-class relative to homegrown employees in appraisal cycles</li>
+            <li>Work becomes stagnant over time; limited skill diversification especially if staffed on a poor project</li>
+            <li>AI-driven deadline compression cited as a worsening trend since 2024</li>
+            <li>Senior-level salaries (Consultant band) described as insufficient for family life and lifestyle inflation</li>
+            <li>Long-term ZS employment may limit pivoting to product companies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cw-final-box">
+        <div class="cw-final-box-label">Editorial Assessment</div>
+        <p>
+          ZS is a company where the employer value proposition holds most strongly at the entry level and for a defined window &mdash; roughly the first two to three years of a data or technology consulting career in pharma. The compensation is honest, the peer environment is stimulating, and the flat structure gives junior employees visibility that larger firms do not.
+        </p>
+        <p>
+          Beyond that window, the picture fractures. The work-life balance score of 2.0 is not a rounding error &mdash; it reflects hundreds of employees independently reporting a culture of sustained overwork that the hybrid and flexible-timing policies do not meaningfully constrain. The promotion system's opacity, the treatment of lateral hires, and an emerging pattern of AI-driven expectation inflation are structural issues, not outlier complaints.
+        </p>
+        <p>
+          For someone considering ZS: go in with clear timelines, a plan to upskill independently, and an eye on what the jump to Associate Consultant or Consultant actually costs in hours relative to what it pays. The company means well by its own account &mdash; its tagline is not entirely ironic &mdash; but intent and lived experience currently have a significant gap between them.
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <!-- /cw-body -->
+
+</div>
+<!-- /customOuterWrapper -->
+
+</body>
+</html>
