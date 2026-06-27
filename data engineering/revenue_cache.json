@@ -1,0 +1,146 @@
+{
+  "Accenture": {
+    "revenue": "USD 73.10 billion",
+    "source": "yfinance:ACN"
+  },
+  "Altimetrik": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Amazon": {
+    "revenue": "USD 742.78 billion",
+    "source": "yfinance:AMZN"
+  },
+  "American Express": {
+    "revenue": "USD 68.81 billion",
+    "source": "yfinance:AXP"
+  },
+  "Axtria": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Boston Consulting Group": {
+    "revenue": "$14.4 billion (2025) &#91; 2 &#93;",
+    "source": "wikipedia:Boston_Consulting_Group"
+  },
+  "Bounteous x Accolite (Accolite Digital India Pvt. Ltd.)": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Capgemini": {
+    "revenue": "USD 22.46 billion",
+    "source": "yfinance:CAP.PA"
+  },
+  "Chegg": {
+    "revenue": "USD 319 million",
+    "source": "yfinance:CHGG"
+  },
+  "Cognizant": {
+    "revenue": "USD 21.41 billion",
+    "source": "yfinance:CTSH"
+  },
+  "Deeplearning.ai": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Dentsu Global Services": {
+    "revenue": "USD 1.45 trillion",
+    "source": "yfinance:4324.T"
+  },
+  "EXL Service": {
+    "revenue": "USD 2.16 billion",
+    "source": "yfinance:EXLS"
+  },
+  "GSPANN": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Genpact": {
+    "revenue": "USD 5.16 billion",
+    "source": "yfinance:G"
+  },
+  "Google": {
+    "revenue": "USD 422.50 billion",
+    "source": "yfinance:GOOGL"
+  },
+  "HCLTech": {
+    "revenue": "USD 14.66 billion",
+    "source": "yfinance:HCLTECH.NS"
+  },
+  "HMH Technology Private Limited": {
+    "revenue": "$1.41 billion (2017)",
+    "source": "wikipedia:Houghton_Mifflin_Harcourt"
+  },
+  "IBM": {
+    "revenue": "USD 68.91 billion",
+    "source": "yfinance:IBM"
+  },
+  "IBM Consulting": {
+    "revenue": "USD 68.91 billion",
+    "source": "yfinance:IBM"
+  },
+  "Infosys": {
+    "revenue": "USD 20.16 billion",
+    "source": "yfinance:INFY"
+  },
+  "KPMG India": {
+    "revenue": "USD 38.4 billion",
+    "source": "wikipedia:KPMG"
+  },
+  "Khan Academy": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Lumen Technologies": {
+    "revenue": "USD 12.12 billion",
+    "source": "yfinance:LUMN"
+  },
+  "Mindlance": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Nagarro": {
+    "revenue": "USD 1.00 billion",
+    "source": "yfinance:NA9.DE"
+  },
+  "Optum Global Solutions ": {
+    "revenue": "USD 449.71 billion",
+    "source": "yfinance:UNH"
+  },
+  "Procore": {
+    "revenue": "USD 1.37 billion",
+    "source": "yfinance:PCOR"
+  },
+  "PwC": {
+    "revenue": "USD 55.4 billion",
+    "source": "wikipedia:PricewaterhouseCoopers"
+  },
+  "S&P Global": {
+    "revenue": "USD 15.73 billion",
+    "source": "yfinance:SPGI"
+  },
+  "Siemens Energy": {
+    "revenue": "USD 40.14 billion",
+    "source": "yfinance:ENR.DE"
+  },
+  "Statusneo": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "TCS": {
+    "revenue": "USD 2.67 trillion",
+    "source": "yfinance:TCS.NS"
+  },
+  "TECHPINNACLE BIT SOLUTIONS": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "Tredence": {
+    "revenue": "Not publicly disclosed",
+    "source": "deepseek"
+  },
+  "ZS": {
+    "revenue": "USD 2.0 billion (FY2025, est.)",
+    "source": "deepseek"
+  }
+}
