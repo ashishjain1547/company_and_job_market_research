@@ -141,7 +141,8 @@ fig, ax = plt.subplots(figsize=(14, 6))
 sns.boxplot(data=df_top, x='Company', y='Rating', hue='Company',
             palette='viridis', legend=False, ax=ax)
 ax.set_title('Rating Distribution per Company (Top 15 by Total Reviews)', fontsize=14)
-ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right', fontsize=9)
+ax.set_xticks(range(len(top_companies)))
+ax.set_xticklabels(top_companies, rotation=45, ha='right', fontsize=9)
 ax.set_ylabel('Rating', fontsize=12)
 save_plot(plt, "05_rating_boxplot_per_company.png")
 
@@ -515,7 +516,7 @@ ax.set_xlabel('Year Founded', fontsize=12)
 ax.set_ylabel('')
 # Add rating as text on bars
 for i, (_, row) in enumerate(companies_with_founding.iterrows()):
-    ax.text(row['founded'] + 0.5, i, f"★ {row['avg_rating']:.1f}",
+    ax.text(row['founded'] + 0.5, i, f"* {row['avg_rating']:.1f}",
             va='center', fontsize=10, fontweight='bold',
             color='#c0392b')
 # Add reference lines for eras
@@ -730,7 +731,7 @@ if len(ind_data) >= 3:
     for i, (_, row) in enumerate(ind_data.iterrows()):
         industry_short = row['industry'][:35] + '...' if len(str(row['industry'])) > 35 else row['industry']
         ax.text(row['global_emp'] * 1.05, i,
-                f"★{row['avg_rating']:.1f} | {industry_short}",
+                f"*{row['avg_rating']:.1f} | {industry_short}",
                 va='center', fontsize=8, style='italic', color='#555')
     ax.grid(axis='x', linestyle='--', alpha=0.3)
     save_plot(plt, "30_industry_employee_comparison.png")
@@ -876,7 +877,7 @@ def _parse_revenue_usd(rev_str) -> float | None:
     # Clean HTML entities, citations, parentheticals, stray spaces
     clean = re.sub(r'&#91;.*?&#93;', '', rev_str)
     clean = re.sub(r'\(.*?\)', '', clean)
-    clean = clean.replace('$', 'USD ').replace('\u20b9', 'INR ')  # ₹
+    clean = clean.replace('$', 'USD ').replace('\u20b9', 'INR ')  # Rs.
     clean = re.sub(r'\s+', ' ', clean).strip()
 
     # Extract: [currency] [number] [scale_word]
@@ -899,7 +900,7 @@ def _parse_revenue_usd(rev_str) -> float | None:
 
     # Detect INR → USD conversion (crude heuristic: if INR value is in
     # trillions, it's likely INR, not USD; convert at ~85 INR/USD)
-    inr_detected = bool(re.search(r'INR|Rs\.?|₹', rev_str, re.IGNORECASE))
+    inr_detected = bool(re.search(r'INR|Rs\.?|Rs.', rev_str, re.IGNORECASE))
     if inr_detected and scale == 'trillion':
         # INR trillion → USD billion (divide by ~85)
         return (num * 1e12) / 85.0
@@ -981,7 +982,7 @@ ax.set_title('Top Companies by Annual Revenue (as of Jun 2026)',
 ax.grid(axis='x', linestyle='--', alpha=0.4)
 for bar, (_, row) in zip(bars, top_rev.iterrows()):
     ax.text(bar.get_width() * 1.02, bar.get_y() + bar.get_height() / 2,
-            f'{_rev_fmt(row["revenue_usd"]):>6s}  ★{row["avg_rating"]:.1f}',
+            f'{_rev_fmt(row["revenue_usd"]):>6s}  *{row["avg_rating"]:.1f}',
             va='center', fontsize=9, fontweight='bold')
 save_plot(plt, "36_top_companies_by_revenue.png")
 
@@ -1249,7 +1250,7 @@ for bar, count, rating in zip(bars, tier_counts.values,
     if count > 0:
         axes[1].text(bar.get_x() + bar.get_width() / 2,
                      bar.get_height() + 0.15,
-                     f'n={count}\n★{rating:.1f}',
+                     f'n={count}\n*{rating:.1f}',
                      ha='center', fontsize=10, fontweight='bold')
 
 # Combined legend
@@ -1398,9 +1399,9 @@ company_salary['salary_per_yoe'] = company_salary['avg_salary_lyr'] / 13.0
 print(
     f"\nSalary data: {company_salary['avg_salary_lyr'].notna().sum()} companies "
     f"have salary data. "
-    f"Range: ₹{company_salary['avg_salary_lyr'].min():.1f}L–"
-    f"₹{company_salary['avg_salary_lyr'].max():.1f}L/yr, "
-    f"Median: ₹{company_salary['avg_salary_lyr'].median():.1f}L/yr"
+    f"Range: Rs.{company_salary['avg_salary_lyr'].min():.1f}L–"
+    f"Rs.{company_salary['avg_salary_lyr'].max():.1f}L/yr, "
+    f"Median: Rs.{company_salary['avg_salary_lyr'].median():.1f}L/yr"
 )
 
 # ── 8.46 ── Salary Distribution (Histogram + KDE) ──
@@ -1410,9 +1411,9 @@ fig, ax = plt.subplots(figsize=(10, 6))
 sns.histplot(salary_clean, bins=20, kde=True, color='#8e44ad',
              edgecolor='#6c3483', ax=ax)
 ax.axvline(salary_clean.mean(), color='red', linestyle='--', linewidth=2,
-           label=f'Mean: ₹{salary_clean.mean():.1f}L/yr')
+           label=f'Mean: Rs.{salary_clean.mean():.1f}L/yr')
 ax.axvline(salary_clean.median(), color='#e67e22', linestyle='--', linewidth=2,
-           label=f'Median: ₹{salary_clean.median():.1f}L/yr')
+           label=f'Median: Rs.{salary_clean.median():.1f}L/yr')
 ax.set_title('Distribution of Average Salary (Lakhs/Year)\nfor ~13 YOE Professionals', fontsize=14, pad=15)
 ax.set_xlabel('Avg Salary (Lakhs/Year)', fontsize=12)
 ax.set_ylabel('Frequency', fontsize=12)
@@ -1431,7 +1432,7 @@ ax.set_title('Top 20 Companies by Average Salary\n(for ~13 YOE professionals)', 
 ax.grid(axis='x', linestyle='--', alpha=0.4)
 for bar, (_, row) in zip(bars, top_salary.iterrows()):
     ax.text(bar.get_width() + 0.3, bar.get_y() + bar.get_height()/2,
-            f'₹{row["avg_salary_lyr"]:.1f}L  ★{row["avg_rating"]:.1f}',
+            f'Rs.{row["avg_salary_lyr"]:.1f}L  *{row["avg_rating"]:.1f}',
             va='center', fontsize=9, fontweight='bold')
 save_plot(plt, "47_top_companies_by_salary.png")
 
@@ -1459,7 +1460,7 @@ if mask.sum() > 2:
     x_line = np.linspace(sal_rating_data['avg_rating'].min(),
                          sal_rating_data['avg_rating'].max(), 100)
     ax.plot(x_line, p(x_line), 'r--', linewidth=1.5, alpha=0.7,
-            label=f'Slope: {z[0]:.1f} L/★')
+            label=f'Slope: {z[0]:.1f} L/*')
     corr_val = sal_rating_data['avg_rating'].corr(sal_rating_data['avg_salary_lyr'])
     ax.text(0.95, 0.05, f'r={corr_val:.2f}', transform=ax.transAxes,
             fontsize=11, ha='right', va='bottom',
@@ -1616,7 +1617,7 @@ for _, row in sal_dev_data.iterrows():
                 fontsize=7, ha='left')
 
 # Annotate quadrants
-ax.text(0.98, 0.98, 'Above Industry\nHigh Salary → ★',
+ax.text(0.98, 0.98, 'Above Industry\nHigh Salary → *',
         transform=ax.transAxes, fontsize=9, ha='right', va='top',
         bbox=dict(boxstyle='round', facecolor='#2ecc71', alpha=0.3))
 ax.text(0.02, 0.98, 'Below Industry\nHigh Salary',
@@ -1645,7 +1646,7 @@ ax.set_title('Top 20 Companies by Salary per Year of Experience\n(Avg Salary ÷ 
 ax.grid(axis='x', linestyle='--', alpha=0.4)
 for bar, (_, row) in zip(bars, top_salary_per_yoe.iterrows()):
     ax.text(bar.get_width() + 0.05, bar.get_y() + bar.get_height()/2,
-            f'₹{row["salary_per_yoe"]:.1f}L/YOE  (₹{row["avg_salary_lyr"]:.0f}L @ 13yr)',
+            f'Rs.{row["salary_per_yoe"]:.1f}L/YOE  (Rs.{row["avg_salary_lyr"]:.0f}L @ 13yr)',
             va='center', fontsize=8.5, fontweight='bold')
 save_plot(plt, "53_salary_per_yoe_by_company.png")
 
@@ -1773,13 +1774,13 @@ ax.axhline(sal_wlb_data['avg_salary_lyr'].median(), color='gray', linestyle='--'
            alpha=0.4, linewidth=1)
 
 # Quadrant labels
-ax.text(0.98, 0.98, 'HIGH Salary\nGOOD WLB ✨', transform=ax.transAxes,
+ax.text(0.98, 0.98, 'HIGH Salary\nGOOD WLB [BEST]', transform=ax.transAxes,
         fontsize=9, ha='right', va='top', fontweight='bold',
         bbox=dict(boxstyle='round', facecolor='#2ecc71', alpha=0.25))
 ax.text(0.02, 0.98, 'LOW Salary\nGOOD WLB', transform=ax.transAxes,
         fontsize=9, ha='left', va='top',
         bbox=dict(boxstyle='round', facecolor='#f39c12', alpha=0.25))
-ax.text(0.98, 0.02, 'HIGH Salary\nPOOR WLB ⚠', transform=ax.transAxes,
+ax.text(0.98, 0.02, 'HIGH Salary\nPOOR WLB [!]', transform=ax.transAxes,
         fontsize=9, ha='right', va='bottom',
         bbox=dict(boxstyle='round', facecolor='#e74c3c', alpha=0.25))
 ax.text(0.02, 0.02, 'LOW Salary\nPOOR WLB', transform=ax.transAxes,
@@ -1806,8 +1807,8 @@ salary_corr_cols = [
 ]
 salary_corr_labels = [
     'Salary (L/Yr)', 'Rating', 'Reviews',
-    'Salary ★', 'WLB ★', 'Culture ★', 'Satisfaction ★',
-    'Skill ★', 'Security ★', 'Promotions ★',
+    'Salary *', 'WLB *', 'Culture *', 'Satisfaction *',
+    'Skill *', 'Security *', 'Promotions *',
     'Ind. Dev%', 'Global Emp', 'India Emp', 'Age (yrs)',
 ]
 
